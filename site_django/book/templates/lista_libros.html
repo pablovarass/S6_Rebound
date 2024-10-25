@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="container mt-5">
+    <h2>Lista de Libros con Valoración Mayor a 1500</h2>
+    {% if high_rated_books %}
+    <!-- tabla con libros de alta valoración -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Título</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Valoración</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for libro in high_rated_books %}
+        <tr>
+          <td>{{ libro.id }}</td>
+          <td>{{ libro.titulo }}</td>
+          <td>{{ libro.autor }}</td>
+          <td>{{ libro.valoracion }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+            <td colspan="4">No hay libros con valoración mayor a 1500 puntos</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <!-- No hay libros con alta valoración -->
+    <p>No hay libros con valoración mayor a 1500 puntos</p>
+    {% endif %}
+
+    <h2>Lista Completa de Libros</h2>
+    {% if all_books %}
+    <!-- tabla con todos los libros -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Título</th>
+          <th scope="col">Autor</th>
+          <th scope="col">Valoración</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for libro in all_books %}
+        <tr>
+          <td>{{ libro.id }}</td>
+          <td>{{ libro.titulo }}</td>
+          <td>{{ libro.autor }}</td>
+          <td>{{ libro.valoracion }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <!-- No hay libros en la lista completa -->
+    <p>No hay libros disponibles</p>
+    {% endif %}
+</section>
+{% endblock %}
